@@ -5,6 +5,7 @@ ruby "2.7.6"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.3"
+#gem 'rails', '~> 6.0.3', '>= 6.0.3.7'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -19,7 +20,7 @@ gem "puma", "~> 5.0"
 gem "importmap-rails"
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
-gem "turbo-rails"
+gem "turbo-rails","~>1.1.1"
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
@@ -44,11 +45,11 @@ gem "bootsnap", require: false
 
 #日本語化
 # For 5.0.x, 5.1.x and 5.2.x
-gem 'rails-i18n', '~> 5.1'
+#gem 'rails-i18n', '~> 5.1'
 
 # rails4系なら以下を記述
 # For 4.0.x
-gem 'rails-i18n', '~> 6.0'
+gem 'rails-i18n', '~> 7.0'
 
 #deviceの導入
 gem 'devise'
@@ -61,7 +62,7 @@ gem 'devise'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: %i[ :mri, :mingw, :x64_mingw ]
+  gem "debug", platforms: [ :mri, :mingw, :x64_mingw ]
   gem "pry-byebug"
   gem "pry-rails"
   gem "pry-doc"
