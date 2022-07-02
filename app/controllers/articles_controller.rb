@@ -1,10 +1,13 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: %i[ show edit update ]
+  skip_before_action :authenticate_user!, only: %i[ index show ]
+  before_action :set_article, only: %i[ edit update destroy ]
+
   def index
-    @articles = Article.all
+    @articles = Article.all.page params[:page]
   end
 
   def show
+    @article = Article.find(params[:id])
   end
 
   def edit
@@ -17,10 +20,10 @@ class ArticlesController < ApplicationController
 
   def create
 
-    @article = Article.new(article_params)
+    @article = current_user.articles.new(article_params)
 
     if @article.save
-      redirect_to @article, notice: "Article was successfully created."
+      redirect_to @article, notice: "#{t('activerecord.models.article')}を作成しました。"
     else
       render :new, status: :unprocessable_entity
     end
@@ -30,7 +33,7 @@ class ArticlesController < ApplicationController
   def update
     @article.update!(article_params)
 
-    if @article.save
+    if @articles.save
       redirect_to @article, notice: "Article was successfully updated."
     else
       render :new, status: :unprocessable_entity
@@ -50,4 +53,9 @@ class ArticlesController < ApplicationController
     def article_params
       params.require(:article).permit(:title, :content)
     end
+
+    def set_article
+      @article = current_user.articles.find(params[:id])
+    end
+
 end

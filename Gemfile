@@ -54,6 +54,8 @@ gem 'rails-i18n', '~> 7.0'
 #deviceの導入
 gem 'devise'
 
+#kaminariの使用
+gem 'kaminari'
 # Use Sass to process CSS
 # gem "sassc-rails"
 
