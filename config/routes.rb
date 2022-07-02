@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :user
   get 'mypage/index'
-  devise_for :users
   root to: 'articles#index'
   get '/mypage', to: 'mypage#show'
   resources :articles
