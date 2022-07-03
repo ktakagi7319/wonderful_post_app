@@ -5,7 +5,12 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-#for num in 1..3 do
+
+tags = ["タグ1","タグ2","タグ3"]
+for tag in tags do
+  Tag.find_or_create_by!(name: tag)
+end
+
 3.times do |num|
   num += 1
   set_user = sprintf("user%03d@gmail.com", num)
@@ -22,6 +27,12 @@
     user.articles.find_or_create_by!(title:set_title) do |article|
       article.content = set_content
     end
+
+    article_number = user.articles.find_by!(title: set_title,user_id: num).id
+    for tag_num in 1..tags.size do
+      ArticleTag.create!(article_id: article_number, tag_id: tag_num)
+    end
+
   end
 
 end

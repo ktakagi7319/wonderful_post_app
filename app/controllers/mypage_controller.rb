@@ -1,7 +1,7 @@
 class MypageController < ApplicationController
   # GET /mypage
   def show
-    articles = current_user.articles
+    articles = current_user.articles.includes(:tags)
 
     articles = articles.where("title LIKE ?", "%#{params[:title]}%") if params[:title].present?
 
